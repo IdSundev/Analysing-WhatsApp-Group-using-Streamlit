@@ -1,1 +1,1 @@
-web: streamlit run Whatsapp_Analysis.py
+web: streamlit hello
