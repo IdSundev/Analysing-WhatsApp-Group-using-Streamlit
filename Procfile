@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlis run Whatsapp_Analysis.py
+web: sh setup.sh && streamlit run Whatsapp_Analysis.py
