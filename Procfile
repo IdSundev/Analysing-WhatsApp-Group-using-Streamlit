@@ -1,0 +1,1 @@
+web: sh setup.sh && streamlist run Whatsapp_Analysis.py
