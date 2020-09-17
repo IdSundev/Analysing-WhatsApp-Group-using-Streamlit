@@ -36,7 +36,10 @@ streamlit run Whatsapp_Analysis.py
 ```
 
 ## Notes
-https://docs.streamlit.io/en/stable/getting_started.html
+https://docs.streamlit.io/en/stable/getting_started.html <br>
+https://towardsdatascience.com/deploy-streamlit-on-heroku-9c87798d2088 <br>
+https://discuss.streamlit.io/t/issue-with-serving-a-streamlit-heroku-app-in-a-browser/2543/7
+
 
 ## Contact
 https://www.cefsyarif.com <br/>

@@ -17,27 +17,24 @@ import datetime
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 
 st.title('WhatsApp Group Analysis')
-st.markdown('Analysis on Exported chats to understand texting patterns of users.')
+st.markdown('Analysis Grup WhatsApp Sederhana menggunakan Python & Pyplot')
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
-st.sidebar.title('Analyze:')
-st.sidebar.markdown('This app is use to analyze your WhatsApp Group Chats')
+st.sidebar.title('About:')
+st.sidebar.markdown('Aplikasi ini digunakan untuk menganalisis Whatsapp Group Chat yang di eksport tanpa media.')
 
 st.sidebar.markdown('[![IdSundev]\
                     (https://img.shields.io/badge/Author-@IdSundev-gray.svg?colorA=gray&colorB=dodgerblue&logo=github)]\
                     (https://github.com/IdSundev/Analysing-WhatsApp-Group-using-Streamlit/)')
 
-st.sidebar.markdown('**How to export chat text file? (Not Available on WhatApp Web)**')
-st.sidebar.text('Follow the steps 👇:')
-st.sidebar.text('1) Open the individual or group chat.')
-st.sidebar.text('2) Tap options > More > Export chat.')
-st.sidebar.text('3) Choose export without media.')
-st.sidebar.markdown('*You are all set to go*.')
+st.sidebar.markdown('**Cara Export group chat (Not Available on WhatApp Web)**')
+st.sidebar.text('1) Pilih group chat.')
+st.sidebar.text('2) Pilih options > More > Export chat.')
+st.sidebar.text('3) Pilih export without media.')
 st.sidebar.markdown('**FAQs**')
-st.sidebar.markdown('**What happens to my data?**')
-st.sidebar.markdown('The data you upload is not saved anywhere on this site or any 3rd party site i.e, not in any storage like DB/FileSystem/Logs.')
+st.sidebar.markdown('Data yang diupload tidak akan disimpan dimanapun baik di situs ini maupun di third party seperti local storage(DB/FileSystem/Logs)')
 
-st.sidebar.markdown('**Currenly works only for text files having date format as d/m/y**')
+st.sidebar.markdown('**REFERENCE**')
 st.sidebar.markdown('[![Saiteja Kura]\
                     (https://img.shields.io/badge/Reference-@SaitejaKura-gray.svg?colorA=gray&colorB=dodgerblue&logo=github)]\
                     (https://github.com/kurasaiteja/Whatsapp-Group-Chat--Analyzer-Web-App/)')
@@ -228,6 +225,9 @@ def dateconv(date):
 
 # Upload File
 uploaded_file = st.file_uploader('Upload Your Whatsap Chat.(.txt file only!)', type='txt')
+st.markdown('**Format:**')
+st.text('(Tgl/Bln/Thn) (Jam.Menit) - (Author): (Message) Atau')
+st.text('(Tgl/Bln/Thn), (Jam:Menit) - (Author): (Message)')
 if uploaded_file is not None:
   @st.cache(allow_output_mutation=True)
   def load_data(uploaded_file):
