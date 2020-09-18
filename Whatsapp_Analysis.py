@@ -110,7 +110,7 @@ def words(messages_df):
   stopwords_masdevin = [x.rstrip() for x in f]
   f.close()
   stopwords.update(stopwords_masdevin)
-  update_stopwords = ['mba','mas','mbak','bu','klo','yaa','ga','aja','mbak','udah','nih','nya','lu','gw','gak','bang','bro','wkwk','wkwkwk','bg','nih','yg','kalo','gue','kak','Iya','si','btw','tau','yaaa','kalo','orang','dah']
+  update_stopwords = ['mba','mas','mbak','bu','klo','yaa','ga','aja','mbak','udah','nih','nya','lu','gw','gak','bang','bro','wkwk','wkwkwk','bg','nih','yg','kalo','gue','kak','Iya','si','btw','tau','yaaa','kalo','orang','dah','Terima kasih','sdg','yah','utk','bgmn','lgss','sdh','dlm','jg','smg']
   stopwords.update(update_stopwords)
   wordcloud = WordCloud(stopwords=stopwords, background_color='white', height=640, width=800).generate(text)
   # Display the generated image the matplotlib way:
@@ -145,7 +145,7 @@ def stats(data):
 
 # Exports dari Android
 def startsWithDateAndTimeAndroid(s):
-  pattern = '^([0-9]+)(\/)([0-9]+)(\/)([0-9][0-9])(, | )([0-9]+)(:|.)([0-9]+) -'
+  pattern = '^([0-9]+)(\/)([0-9]+)(\/)([0-9][0-9])(, | )([0-9]+)(:|.)([0-9]+)([" AM"|" PM"]*) -'
   result = re.match(pattern, s)
   if result:
     return True
@@ -167,13 +167,31 @@ def FindAuthor(s):
   else:
     return False
 
+def handleTimeAndroid(line):
+  splitTime = line.split(':')
+  if line[-2:] == 'PM':
+    pm = dict(zip(range(12), range(12,24)))
+    pm[12] = 0
+    time = str(pm[int(splitTime[0])])+':'+splitTime[1][:2]
+  else:
+    if int(splitTime[0]) < 10:
+      time = '0'+splitTime[0]+':'+splitTime[1][:2]
+    else:
+      time = splitTime[0]+':'+splitTime[1][:2]
+  return time
+
+
 def getDataPointAndroid(line):
   splitline = line.split(' - ')
   dateTime = splitline[0]
-  if dateTime[8] == ' ':
-    date, time = dateTime.split(' ')
-  else:
+  if (dateTime[-2:] == 'AM') | (dateTime[-2:] == 'PM'):
     date, time = dateTime.split(', ')
+    time = handleTimeAndroid(time)
+  else:
+    if dateTime[8] == ' ':
+      date, time = dateTime.split(' ')
+    else:
+      date, time = dateTime.split(', ')
   message = ' '.join(splitline[1:])
   if FindAuthor(message):
     splitMessage = message.split(': ')
@@ -276,7 +294,11 @@ if uploaded_file is not None:
     if device == 'android':
       df = pd.DataFrame(parsedData, columns=['Date', 'Time','Author','Message'])
       df['Date'] = pd.to_datetime(df['Date'])
+      # hapus data yang mengandung NA
       df = df.dropna()
+      # hapus Message dengan isi: 'Pesan ini telah dihapus' atau 'This message was deleted'
+      indexNames = df[(df['Message'] == 'Pesan ini telah dihapus') | (df['Message'] == 'This message was deleted')].index
+      df.drop(indexNames, inplace=True)
       df['emoji'] = df['Message'].apply(split_count)
       URLPATTERN = r'(https?://\S+)'
       df['urlcount'] = df.Message.apply(lambda x: re.findall(URLPATTERN, x)).str.len()
