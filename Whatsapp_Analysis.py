@@ -245,7 +245,8 @@ def dateconv(date):
 uploaded_file = st.file_uploader('Upload Your Whatsap Chat.(.txt file only!)', type='txt')
 st.markdown('**Format:**')
 st.text('(Tgl/Bln/Thn) (Jam.Menit) - (Author): (Message) Atau')
-st.text('(Tgl/Bln/Thn), (Jam:Menit) - (Author): (Message)')
+st.text('(Tgl/Bln/Thn), (Jam:Menit) - (Author): (Message) Atau')
+st.text('(Tgl/Bln/Thn), (Jam:Menit AM|PM) - (Author): (Message)')
 if uploaded_file is not None:
   @st.cache(allow_output_mutation=True)
   def load_data(uploaded_file):
