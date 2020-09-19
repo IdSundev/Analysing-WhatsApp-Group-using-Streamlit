@@ -3,6 +3,14 @@
 Repositori ini berisi source code latihan dari:
 https://medium.com/towards-artificial-intelligence/whatsapp-group-chat-analysis-part-ii-efd7d4d0b051
 
+## Notes
+https://docs.streamlit.io/en/stable/getting_started.html <br>
+https://towardsdatascience.com/deploy-streamlit-on-heroku-9c87798d2088 <br>
+https://discuss.streamlit.io/t/issue-with-serving-a-streamlit-heroku-app-in-a-browser/2543/7 <br>
+Untuk keperluan stopwords, saya tambahkan beberapa stopwords berupa singkatan kata, juga stopwords dari source berikut:<br>
+https://github.com/masdevid/ID-Stopwords/blob/master/id.stopwords.02.01.2016.txt<br>
+https://devtrik.com/python/stopword-removal-bahasa-indonesia-python-sastrawi/ (Sastrawi)
+
 ## Basic Command:
 
 **Running Anaconda**
@@ -34,14 +42,6 @@ deactivate
 ```bash
 streamlit run Whatsapp_Analysis.py
 ```
-
-## Notes
-https://docs.streamlit.io/en/stable/getting_started.html <br>
-https://towardsdatascience.com/deploy-streamlit-on-heroku-9c87798d2088 <br>
-https://discuss.streamlit.io/t/issue-with-serving-a-streamlit-heroku-app-in-a-browser/2543/7
-Untuk keperluan stopwords, saya tambahkan beberapa stopwords berupa singkatan kata, juga stopwords dari source berikut:
-https://github.com/masdevid/ID-Stopwords/blob/master/id.stopwords.02.01.2016.txt
-https://devtrik.com/python/stopword-removal-bahasa-indonesia-python-sastrawi/ (Sastrawi)
 
 
 ## Contact
