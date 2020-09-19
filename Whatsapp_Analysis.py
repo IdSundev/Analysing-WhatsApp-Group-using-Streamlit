@@ -171,7 +171,7 @@ def handleTimeAndroid(line):
   splitTime = line.split(':')
   if line[-2:] == 'PM':
     pm = dict(zip(range(12), range(12,24)))
-    pm[12] = 0
+    pm[12] = 12
     time = str(pm[int(splitTime[0])])+':'+splitTime[1][:2]
   else:
     if int(splitTime[0]) < 10:
